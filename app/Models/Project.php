@@ -18,7 +18,6 @@ class Project extends Model implements HasMedia {
         'location',
         'scope'
     ];
-    public $translatable = [ 'title', 'description','scope','location' ];
 
     public function category() {
         return $this->belongsTo( Category::class, 'categery_id', 'id' );
