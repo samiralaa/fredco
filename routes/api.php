@@ -105,4 +105,6 @@ Route::get('latest/products', [ProductController::class, 'latestproducts'])->nam
 use App\Http\Controllers\InvoiceController;
 
 Route::post('/invoices', [InvoiceController::class, 'store']);
+Route::get('/invoices', [InvoiceController::class, 'index']);
+
 Route::get('/invoices/{id}', [InvoiceController::class, 'show']);

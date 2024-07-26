@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class InvoiceController 
 {
+
+    public function index()
+{
+    $invoices = Invoice::get(); 
+    return response()->json($invoices);
+}
     public function store(Request $request)
     {
         $invoice = Invoice::create($request->only([
