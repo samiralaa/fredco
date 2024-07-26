@@ -18,9 +18,12 @@ class InvoiceController
     public function store(Request $request)
     {
         $invoice = Invoice::create($request->only([
-            'client_name', 'client_location', 'client_address',
-            'company_name', 'company_taxId', 'company_location',
-            'company_address', 'created_date', 'due_date', 'total'
+            'client_name',
+             'client_location', 
+             'client_address',
+            'created_date', 
+            'due_date',
+             'total'
         ]));
 
         foreach ($request->items as $item) {
