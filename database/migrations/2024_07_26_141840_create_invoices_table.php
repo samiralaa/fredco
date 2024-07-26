@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('company_taxId');
             $table->string('company_location');
             $table->string('company_address');
-            $table->date('created_date');
+           
             $table->date('due_date');
             $table->decimal('total', 10, 2);
             $table->timestamps();

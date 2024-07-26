@@ -12,7 +12,7 @@ class Invoice extends Model
     protected $fillable = [
         'client_name', 'client_location', 'client_address',
         'company_name', 'company_taxId', 'company_location',
-        'company_address', 'created_date', 'due_date', 'total'
+        'company_address', 'due_date', 'total'
     ];
 
     public function items()
