@@ -16,11 +16,9 @@ return new class extends Migration
             $table->string('client_name');
             $table->string('client_location');
             $table->string('client_address');
-            $table->string('company_name');
-            $table->string('company_taxId');
-            $table->string('company_location');
-            $table->string('company_address');
-           
+        
+
+            $table->date('due_date');
             $table->decimal('total', 10, 2);
             $table->timestamps();
         });
