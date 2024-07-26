@@ -76,29 +76,40 @@ public function totalProject  ()
         return response()->json( [ 'status' => 'success', 'project' => $project ], 200 );
     }
 
-    public function update( Request $request, $id ) {
-        $project = Project::find($id);
-        $project->setTranslation( 'title', 'en', $request->title_en );
-        $project->setTranslation( 'title', 'ar', $request->title_ar );
-        $project->setTranslation( 'description', 'en', $request->description_en );
-        $project->setTranslation( 'description', 'ar', $request->description_ar );
-        $project->setTranslation( 'location', 'en', $request->location_en );
-        $project->setTranslation( 'location', 'ar', $request->location_ar );
-        $project->setTranslation( 'scope', 'en', $request->scope_ar );
-        $project->setTranslation( 'scope', 'ar', $request->scope_ar );
+    public function update(Request $request, $id) {
+        $project = Project::findOrFail($id);
+        
+        // Update single language fields
+        $project->title = $request->title;
+        $project->description = $request->description;
+        $project->location = $request->location;
+        $project->scope = $request->scope;
         $project->link = $request->link;
         $project->category_id = $request->category_id;
-
-        if ( $request->hasFile( 'image' ) ) {
-            $project->clearMediaCollection( 'projects' );
-            // Remove existing media from the collection
-            $project->addMediaFromRequest( 'image' )
-            ->toMediaCollection( 'projects' );
+        
+        // Handle multiple file uploads
+        if ($request->hasFile('images')) {
+            // Optionally, remove old images if needed
+             $project->clearMediaCollection('projects');
+            
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                // Store each image
+                $project->addMedia($image)
+                    ->toMediaCollection('projects'); // 'projects' is the collection name
+            }
         }
+        
         $project->save();
-
-        return response()->json( [ 'status' => 'success', 'message' => 'Project updated successfully' ] );
+        
+        // Return a response
+        return response()->json([
+            'success' => true,
+            'message' => 'Project updated successfully.',
+            'project' => $project,
+        ]);
     }
+    
 
 
     public function destroy(  $project ) {
