@@ -13,6 +13,8 @@ class InvoiceController
     $invoices = Invoice::get(); 
     return response()->json($invoices);
 }
+
+
     public function store(Request $request)
     {
         $invoice = Invoice::create($request->only([
