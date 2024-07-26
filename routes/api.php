@@ -45,24 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::delete('users/delete/{id}', [UserController::class, 'destroy']);
 Route::post('users/update/{id}', [UserController::class, 'update']);
 Route::get('user/show/{id}', [UserController::class, 'show'])->middleware('guest');
-Route::post('serves/store', [ServesController::class, 'store']);
 
-Route::get('alljobs', [ServesController::class, 'alljobs']);
-
-Route::post('serves/save/jobs', [ServesController::class, 'saveJobs']);
-
-Route::put('jobs/update/{id}', [ServesController::class, 'updateJobs']);
-Route::delete('deleteJobs/{id}', [ServesController::class, 'deleteJobs']);
-Route::post('applay/save/jobs', [ServesController::class, 'saveapplayJobs']);
-
-Route::get('warshaindex/serves/index', [ServesController::class, 'warshaindex']);
-Route::get('serves/index', [ServesController::class, 'index']);
-Route::post('serves/store', [ServesController::class, 'store']);
-Route::get('serves/show/{id}', [ServesController::class, 'show']);
-Route::put('serves/update/{id}', [ServesController::class, 'update']);
-Route::delete('serves/delete/{id}', [ServesController::class, 'destroy']);
-Route::get('onejob/{id}', [ServesController::class, 'onejob']);
-Route::get('get/applaytojobs/{id}', [ServesController::class, 'oneAllApply']);
 
 Route::post('register', [UserController::class, 'store']);
 Route::get('total/users', [UserController::class, 'totalUsers']);
@@ -119,39 +102,7 @@ Route::get('latest/products', [ProductController::class, 'latestproducts'])->nam
 
 // elwarsha
 
-Route::post('categoryproduct/create', [CaregryProductController::class, 'store'])->name('category.store');
-Route::get('categoryproduct/index', [CaregryProductController::class, 'index'])->name('category.index');
-Route::get('categoryproduct/show/{id}', [CaregryProductController::class, 'show'])->name('category.show');
-Route::delete('categoryproduct/delete/{id}', [CaregryProductController::class, 'destroy'])->name('category.delete');
-Route::post('categoryproduct/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+use App\Http\Controllers\InvoiceController;
 
-Route::get('samir', [CaregryProductProjectController::class, 'samir'])->name('samir');
-
-Route::post('categoryproductproject/create', [CaregryProductProjectController::class, 'store'])->name('category.store');
-Route::get('categoryproductproject/index', [CaregryProductProjectController::class, 'index'])->name('category.index');
-Route::get('categoryproductproject/show/{id}', [CaregryProductProjectController::class, 'show'])->name('category.show');
-Route::delete('categoryproductproject/delete/{id}', [CaregryProductProjectController::class, 'destroy'])->name('category.delete');
-Route::post('categoryproductproject/update/{id}', [CaregryProductProjectController::class, 'update'])->name('category.update');
-
-Route::apiResource('innovations', DesigningGateController::class);
-Route::apiResource('abouts', AboutController::class);
-Route::post('update/abouts/{id}',[AboutController::class,'update']);
-Route::apiResource('explore', ExploreController::class);
-Route::apiResource('Valuableclient',ValuableclientController::class);
-Route::get('/contactinfos/designing-gates', [ContactinfoController::class, 'getByTypeSite1']);
-Route::get('/contactinfos/lixir-interiors', [ContactinfoController::class, 'getByTypeSite2']);
-Route::get('/contactinfos/al-warsha', [ContactinfoController::class, 'getByTypeSite3']);
-Route::post('/contactinfos/update/{id}', [ContactinfoController::class, 'update']);
-
-Route::apiResource('contact/info', ContactinfoController::class);
-
-Route::get('/header-pages/lixir-interiors', [HeederController::class, 'getByTypeSite1']);
-Route::get('/header-pages/al-warsha', [HeederController::class, 'getByTypeSite2']);
-Route::apiResource('header-pages', HeederController::class);
-
-
-
-Route::get('/mission/lixir-interiors', [MissionController::class, 'getByTypeSite1']);
-Route::get('/mission/al-warsha', [MissionController::class, 'getByTypeSite2']);
-Route::apiResource('mission', MissionController::class);
-//
+Route::post('/invoices', [InvoiceController::class, 'store']);
+Route::get('/invoices/{id}', [InvoiceController::class, 'show']);
