@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('company_location');
             $table->string('company_address');
            
-            $table->date('due_date');
             $table->decimal('total', 10, 2);
             $table->timestamps();
         });
