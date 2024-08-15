@@ -13,7 +13,7 @@ class CategoryController
 
     public function getAllCategories()
     {
-        $categories = Category::with('media', 'projects')->get();
+        $categories = Category::with('media', 'projects.media')->get();
         return response()->json(
             [
                 'categories' => $categories,
