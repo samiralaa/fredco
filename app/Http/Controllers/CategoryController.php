@@ -36,6 +36,7 @@ class CategoryController
     public function store(Request $request) {
         $category = new Category();
         $category->title = $request->title;
+        $category->rate = $request->rate;
         $category->description = $request->description; // Add description
     
         if ($request->hasFile('image')) {
@@ -84,10 +85,15 @@ class CategoryController
 
     public function destroy($category)
     {
-        $category = Category::find($category);
+        $category = Category::findOrFail($category);
+        
+        // Delete all projects related to this category
+        $category->projects()->delete();
+        
+        // Now delete the category
         $category->delete();
-        // Return an error response if deletion fails
-        return response()->json(['message' => ' to delete category'], 200);
-
+    
+        return response()->json(['message' => 'Category deleted successfully'], 200);
     }
+    
 }

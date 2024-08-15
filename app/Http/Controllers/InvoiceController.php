@@ -38,4 +38,12 @@ class InvoiceController
         $invoice = Invoice::with('items')->findOrFail($id);
         return response()->json($invoice);
     }
+    public function update(Request $request, $id){
+        $invoice = Invoice::findOrFail($id);
+     
+    }
+    public function destroy($id){
+        $invoice = Invoice::findOrFail($id);
+        $invoice->delete();
+        return response()->json("deleted");    }
 }

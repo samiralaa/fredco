@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Category extends Model implements HasMedia {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = [ 'title',];
+    protected $fillable = [ 'title','description','rate' ];
     // ...
     // public function registerMediaCollections(): void {
     //     $this->addMediaCollection('image')->singleFile();
